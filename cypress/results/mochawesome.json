@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-02-26T11:23:32.311Z",
+    "end": "2021-02-26T11:24:05.158Z",
+    "duration": 32847,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dbdd5002-1b77-4164-ac72-139142fa9778",
+      "title": "",
+      "fullFile": "cypress\\integration\\leetchi.spec.js",
+      "file": "cypress\\integration\\leetchi.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "24cbafa5-22ca-4fcd-a88d-51f4729f2c9a",
+          "title": "Create account  and create a money pot",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create account and money pot",
+              "fullTitle": "Create account  and create a money pot Create account and money pot",
+              "timedOut": null,
+              "duration": 30934,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// validate cookies\ncy.get('[class=\"cm-btn cm-btn-success\"]').contains('Tout accepter').click(); // create different IDs\nvar id = Math.floor(Math.random() * 1000); // Go to login       \ncy.get('#loginLink').contains('Se connecter').click();\ncy.wait(1000);\ncy.url().should('contain', '/User/Authenticate'); // Go to create new account\ncy.get('#btnCreateAccount').contains('Créer un compte').click();\ncy.url().should('contain', '/Authenticate?returnUrl=%2F');\ncy.get('#CreationFormModel_RegisterLastname').type('dodo').should('have.value', 'dodo');\ncy.get('#CreationFormModel_RegisterFirstname').type('youcef').should('have.value', 'youcef');\ncy.get('#birthdateInputDay').type('15').should('have.value', '15');\ncy.wait(2000);\ncy.get('#birthdateInputMonth').type('12', {\n  force: true\n}).should('have.value', '12');\ncy.get('#birthdateInputYear').type('1990').should('have.value', '1990');\ncy.get('#CreationFormModel_RegisterEmail').type('dodo-name' + id + '@hotmail.com').should('have.value', 'dodo-name' + id + '@hotmail.com');\ncy.get('#CreationFormModel_RegisterPassword').type('Youyou88@').should('have.value', 'Youyou88@');\ncy.get('#CreationFormModel_AcceptCGU').check({\n  force: true\n});\ncy.get('[class=\"btn btn-primary btn-submit-form\"]').contains('Créer un compte').click(); //To Be Improve, wait dashbaord appear\ncy.wait(2000); //Check URL\ncy.url().should('contain', '/User/AccountCreated'); //Click I understand button and verify the account is opened\ncy.get('#btnSubmitConsentKyc').click();\ncy.get('[class=\"alert alert-dismissible alert-info\"]').should('contain', 'Bravo et merci de vous être inscrit sur Leetchi.com !');\ncy.wait(2000);\ncy.get('.alert > .close').click();\ncy.get('[class=\"btn btn-primary\"]').contains('Continuer sur le site...').click(); //create a money pot\n//Give name pot and click button create \ncy.get('#MoneyPotName').type('youyou', {\n  force: true\n}).should('have.value', 'youyou');\ncy.get('#createEventButton').click(); // Check URL and name pot\ncy.url().should('contain', '#creationstep2-gifting');\ncy.get('[class=\"heading__lvl1\"]').contains('youyou'); //Click on event birthday and create pot\ncy.get('[class=\"event-type-list\"]').eq('0').click();\ncy.get('#chooseEventTypeButton').click(); //Check create money pot and click the button personalize later\ncy.get('[class=\"modal-title heading__lvl1\"]').contains('Félicitations, votre cagnotte est prête !');\ncy.get('[class=\"btn-link\"]').contains('Personnaliser ma cagnotte plus tard').click(); //Click delete money pot and check delete pot\ncy.get('[class=\"list-label\"]').contains('Supprimer ma cagnotte').click({\n  force: true\n});\ncy.get('#btnConfirmDelete').click();\ncy.url().should('contain', '/fr/mescagnottes');\ncy.get('[class=\"panel-title\"]').contains('Quelle sera votre prochaine cagnotte ?');",
+              "err": {},
+              "uuid": "fff0ebfc-04f7-42d7-8b81-cd98d468b874",
+              "parentUUID": "24cbafa5-22ca-4fcd-a88d-51f4729f2c9a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fff0ebfc-04f7-42d7-8b81-cd98d468b874"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 30934,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
