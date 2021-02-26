@@ -1,7 +1,9 @@
+//Script without a command without a dataset
+// if you want to run the tests you write this command "npm run cy:op"  in command line 
 describe('Create account  and create a money pot', () => {
-    beforeEach("go to leetchi", () => {
+    before("go to leetchi", () => {
         cy.visit("https://www.leetchi.com/")
-        cy.wait(2000)
+        cy.wait(1000)
         cy.url().should('contain','www.leetchi.com/')    
     })  
     
@@ -12,7 +14,7 @@ describe('Create account  and create a money pot', () => {
         let id = Math.floor(Math.random() * 1000)
         // Go to login       
         cy.get('#loginLink').contains('Se connecter').click()
-        cy.wait(2000)
+        cy.wait(1000)
         cy.url().should('contain','/User/Authenticate')
         // Go to create new account
         cy.get('#btnCreateAccount').contains('Créer un compte').click()
@@ -23,7 +25,7 @@ describe('Create account  and create a money pot', () => {
         cy.wait(2000)
         cy.get('#birthdateInputMonth').type('12',{force:true}).should('have.value','12')
         cy.get('#birthdateInputYear').type('1990').should('have.value','1990')
-        cy.get('#CreationFormModel_RegisterEmail').type('dodoname'+id+'@hotmail.com').should('have.value','dodoname'+id+'@hotmail.com')
+        cy.get('#CreationFormModel_RegisterEmail').type('dodo-name'+id+'@hotmail.com').should('have.value','dodo-name'+id+'@hotmail.com')
         cy.get('#CreationFormModel_RegisterPassword').type('Youyou88@').should('have.value','Youyou88@')
         cy.get('#CreationFormModel_AcceptCGU').check({force:true})
         cy.get('[class="btn btn-primary btn-submit-form"]').contains('Créer un compte').click()
